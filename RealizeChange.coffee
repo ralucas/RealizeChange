@@ -6,5 +6,5 @@ if Meteor.isClient
                 console.log "You pressed the button"
 
 if Meteor.isServer
-        Meteor.startup = ->  console.log("none")
+        Meteor.startup = ->  console.log "none"
         
