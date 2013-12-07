@@ -8,7 +8,7 @@
 
 ### TO DO
 1. Added Nav Bar
-2. Integrate Twitter and FB Auth
+2. Integrate Twitter and FB Auth and Google auth
 3. Add Angular?
 
 See http://realizechange.meteor.com
