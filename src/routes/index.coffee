@@ -1,6 +1,11 @@
 exports.index = (req, res) ->
-	res.render('index', { title: 'RealizeChange.Org', subtitle: 'Making that Change happen' });
+	res.render('index', { title: app.locals.config.title, subtitle: app.locals.config.subtitle});
 
 
 exports.main = (req, res) ->
-	res.send("you are logged in. do some damage!", 200);
+	res.render('index', { title: app.locals.config.title, subtitle: app.locals.config.subtitle, username: req.user.name, 200});
+	# res.send({login: "success", username: req.user.name}, 200);
+	# res.redirect('/')
+
+
+	

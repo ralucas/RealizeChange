@@ -1,10 +1,58 @@
 extends layout
 
 block content
-	.container
-		h1= title
-		p.lead #{subtitle}
-		
-		br
-		form(METHOD="LINK", ACTION="/auth/google")
-			input(type="submit", value="Login with Google", class='btn btn-large btn-primary')
+	div.navbar.navbar-default.navbar-fixed-top
+		container 
+			div.navbar-header
+				a.navbar-brand(href='/') #{title}
+				button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+			div.navbar-collapse.collapse#navbar-main
+				ul.nav.navbar-nav
+					each link in links
+						- var isActive = (link.path == current ? 'active' : '')
+						li(class = '#{isActive}')
+							a(href='#{link.path}')= link.label
+				div.pull-right
+					ul.nav.navbar-nav.navbar-right
+						if username
+							li.dropdown
+								a.dropdown-toggle(href='#', data-toggle='dropdown')
+									| Hi #{username}!&nbsp;
+									b.caret
+								ul.dropdown-menu
+									li
+										a(href='/logout') Log Out
+
+									//- if user.role==='admin'
+									//- 	li
+									//- 		a(href='/admin') Admin Section
+						else
+							li.dropdown
+								a.dropdown-toggle(href='/auth/google') Login with Google
+									b.caret
+
+				
+					
+
+						
+		div.container-fluid   
+			block afterNav
+				.container
+					div.row-fluid.jumbotron#splash
+						h2 #{title}
+						p #{subtitle}
+						if username
+							p Welcome #{username}
+							a.btn.btn-default(href='/logout') Log Out
+						else
+							a.btn.btn-default(href='/auth/google') Login with Google
+							
+						
+
+
+	block modals
+
+	block pageScripts

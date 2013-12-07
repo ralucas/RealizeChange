@@ -5,6 +5,7 @@ api = require('./routes/api');
 http = require('http');
 path = require('path');
 app = express();
+global.app = app;
 mongoose = require('mongoose');
 config = require('./config');
 user = require('./models/user');
@@ -43,11 +44,8 @@ passport.use(new GoogleStrategy({returnURL: config.google.returnURL, realm: conf
 					
 					console.log("New user, " + newUser.name + ", was created");
 					done(null, newUser);
-				
-			
-		
-
 ));
+
 
 # config - all environments
 app.set('port', process.env.PORT || 1337);
@@ -68,6 +66,12 @@ app.use(express.static(__dirname + './../public'));
 if ('development' == app.get('env'))
 	app.use(express.errorHandler());
 
+# Import Config
+config = require('./config.js');
+app.locals.config = config;
+
+# Import navigation links
+app.locals.links = require('./navigation');
 
 # auth routes
 app.get '/auth/google', 
@@ -78,9 +82,15 @@ app.get '/auth/google/callback', passport.authenticate('google', { failureRedire
 	res.redirect('/main');
 
 
+# authentication helper
+ensureAuthenticated = (req, res, next) ->
+	if (req.isAuthenticated())
+		return next()
+	res.redirect('/error');
+
 # user routes
 app.get('/', routes.index);
-app.get('/main', routes.main);
+app.get('/main', ensureAuthenticated, routes.main);
 app.get '/logout', (req, res) ->
 	req.logOut();
 	res.redirect('/');
@@ -89,11 +99,7 @@ app.get '/error', (req,res) ->
 	res.send(401,'{err: you got an error. bud.}');
 
 
-# authentication helper
-ensureAuthenticated = (req, res, next) ->
-	if (req.isAuthenticated())
-		return next()
-	res.redirect('/error');
+
 
 
 # run server
