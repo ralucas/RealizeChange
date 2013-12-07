@@ -96,7 +96,7 @@ app.get '/logout', (req, res) ->
 	res.redirect('/');
 
 app.get '/error', (req,res) ->
-	res.send(401,'{err: you got an error. bud.}');
+	res.send(401,'{err: you got an error. bud. buddy.}');
 
 
 
