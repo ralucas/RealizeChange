@@ -1,5 +1,0 @@
-
-/*
- * future api routes
- */
-

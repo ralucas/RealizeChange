@@ -6,12 +6,13 @@ lib-cov
 *.out
 *.pid
 *.gz
+*.DS_Store
 
 pids
 logs
 results
-build
 
+npm-debug.log
 node_modules
-*.DS_Store
+config.coffee
 config.js
