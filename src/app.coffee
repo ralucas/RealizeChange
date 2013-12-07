@@ -10,7 +10,12 @@ mongoose = require('mongoose');
 config = require('./config');
 user = require('./models/user');
 passport = require('passport');
+
+FacebookStrategy = require('passport-facebook').Strategy;
+TwitterStrategy = require('passport-twitter').Strategy;
 GoogleStrategy = require('passport-google').Strategy;
+# config = require('./oauth.js')
+
 
 # connect to mongo
 mongoose.connect(process.env.MONGOHQ_URL or config.mongoUrl);
@@ -45,7 +50,20 @@ passport.use(new GoogleStrategy({returnURL: config.google.returnURL, realm: conf
 					console.log("New user, " + newUser.name + ", was created");
 					done(null, newUser);
 ));
-
+passport.use(new TwitterStrategy({
+	consumerKey: 'TWITTER_CONSUMER_KEY',
+	consumerSecret: 'TWITTER_CONSUMER_SECRET',
+	callbackURL: "http://127.0.0.1:1337/auth/twitter/callback"
+}, (token, tokenSecret, profile, done) ->
+	# asynchronous verification, for effect...
+	process.nextTick () ->
+	  
+	# To keep the example simple, the user's Twitter profile is returned to
+	# represent the logged-in user.  In a typical application, you would want
+	# to associate the Twitter account with a user record in your database,
+	# and return that user instead.
+		return done(null, profile);
+));
 
 # config - all environments
 app.set('port', process.env.PORT || 1337);
@@ -81,6 +99,13 @@ app.get '/auth/google',
 app.get '/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) ->
 	res.redirect('/main');
 
+app.get('/auth/twitter', passport.authenticate('twitter'));
+
+# Twitter will redirect the user to this URL after approval.  Finish the
+# authentication process by attempting to obtain an access token.  If
+# access was granted, the user will be logged in.  Otherwise,
+# authentication has failed.
+app.get('/auth/twitter/callback', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/login' }));
 
 # authentication helper
 ensureAuthenticated = (req, res, next) ->
