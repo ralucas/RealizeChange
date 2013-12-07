@@ -13,7 +13,7 @@ passport = require('passport');
 GoogleStrategy = require('passport-google').Strategy;
 
 # connect to mongo
-mongoose.connect(config.mongoUrl);
+mongoose.connect(process.env.MONGOHQ_URL or config.mongoUrl);
 
 # passport settings
 passport.serializeUser (user,done) ->
