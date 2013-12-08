@@ -26,7 +26,8 @@ config = {
 			subtitle: 'Making dreams come true...'
 		}
 }
-module.exports = if global.process.env.NODE_ENV then config[global.process.env.NODE_ENV] else config.development
+module.exports = config.production
+# module.exports = if global.process.env.NODE_ENV then config[global.process.env.NODE_ENV] else config.development
 
 
 
