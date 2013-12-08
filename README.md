@@ -17,9 +17,9 @@
 
 
 ### TO DO
-1. Added Nav Bar
-2. Integrate Twitter and FB Auth and Google auth
-3. Add Angular?
+1. Add node routing to main 4 pages
+2. Set up rest api in either angular or backbone --Richard?
+3. Set up db structure
 
 Getting 340 error when pushing to heroku. When up the site is located here: realizechange.herokuapp.com || http://nameless-plains-4198.herokuapp.com/
 ![Full](/public/img/full.png)
