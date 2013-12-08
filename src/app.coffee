@@ -29,27 +29,27 @@ passport.deserializeUser (id, done) ->
 	user.findOne {_id : id}, (err, user) ->
 		done(err,user);
 
-# passport.use(new GoogleStrategy({returnURL: config.google.returnURL, realm: config.google.realm}, (identifier, profile, done) ->
-# 	console.log(profile.emails[0].value)
-# 	process.nextTick () ->
-# 		query = user.findOne({'email': profile.emails[0].value});
-# 		query.exec (err, oldUser) ->
+passport.use(new GoogleStrategy({returnURL: config.google.returnURL, realm: config.google.realm}, (identifier, profile, done) ->
+	console.log(profile.emails[0].value)
+	process.nextTick () ->
+		query = user.findOne({'email': profile.emails[0].value});
+		query.exec (err, oldUser) ->
 			
-# 			if (oldUser)
-# 				console.log("Found registered user: " + oldUser.name + " is logged in!");
-# 				done(null, oldUser);
-# 			else
-# 				newUser = new user();
-# 				newUser.name = profile.displayName;
-# 				newUser.email = profile.emails[0].value;
-# 				console.log(newUser);
-# 				newUser.save (err) ->
-# 					if(err) 
-# 						throw err;
+			if (oldUser)
+				console.log("Found registered user: " + oldUser.name + " is logged in!");
+				done(null, oldUser);
+			else
+				newUser = new user();
+				newUser.name = profile.displayName;
+				newUser.email = profile.emails[0].value;
+				console.log(newUser);
+				newUser.save (err) ->
+					if(err) 
+						throw err;
 					
-# 					console.log("New user, " + newUser.name + ", was created");
-# 					done(null, newUser);
-# ));
+					console.log("New user, " + newUser.name + ", was created");
+					done(null, newUser);
+));
 # passport.use(new TwitterStrategy({
 # 	consumerKey: 'TWITTER_CONSUMER_KEY',
 # 	consumerSecret: 'TWITTER_CONSUMER_SECRET',
