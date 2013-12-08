@@ -17,7 +17,7 @@ run = (name, command, cb) ->
 task 'dev', 'Setup my dev system', () ->
   run 'coffee', '--output lib --watch --compile src'
   run 'coffee', '--output public/js/lib --watch --compile public/js/src'
-  run 'export NODE_ENV=development'
+  # run 'process.env.NODE_ENV = "development"'
   # run 'coffee', '--output models/lib --watch --compile models/src'
   # run 'stylus', '-o public/css/lib -w public/css/src'
   run 'supervisor', 'server'
