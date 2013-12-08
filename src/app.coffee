@@ -7,8 +7,8 @@ path = require('path');
 app = express();
 global.app = app;
 mongoose = require('mongoose');
-config = require('./config');
-user = require('./Models/User');
+# config = require('./config');
+# user = require('./Models/User');
 passport = require('passport');
 
 FacebookStrategy = require('passport-facebook').Strategy;
@@ -18,7 +18,7 @@ GoogleStrategy = require('passport-google').Strategy;
 
 
 # connect to mongo
-mongoose.connect(process.env.MONGOHQ_URL or config.mongoUrl);
+# mongoose.connect(process.env.MONGOHQ_URL or config.mongoUrl);
 
 # passport settings
 passport.serializeUser (user,done) ->
@@ -115,10 +115,10 @@ ensureAuthenticated = (req, res, next) ->
 
 # user routes
 app.get('/', routes.index);
-app.get('/main', ensureAuthenticated, routes.main);
-app.get '/logout', (req, res) ->
-	req.logOut();
-	res.redirect('/');
+# app.get('/main', ensureAuthenticated, routes.main);
+# app.get '/logout', (req, res) ->
+# 	req.logOut();
+# 	res.redirect('/');
 
 app.get '/error', (req,res) ->
 	res.send(401,'{err: you got an error. bud. buddy.}');
