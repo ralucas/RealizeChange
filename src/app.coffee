@@ -7,8 +7,8 @@ path = require('path');
 app = express();
 global.app = app;
 mongoose = require('mongoose');
-# config = require('./config');
-# user = require('./Models/User');
+config = require('./config');
+user = require('./Models/User');
 passport = require('passport');
 
 FacebookStrategy = require('passport-facebook').Strategy;
@@ -18,7 +18,7 @@ GoogleStrategy = require('passport-google').Strategy;
 
 
 # connect to mongo
-# mongoose.connect(process.env.MONGOHQ_URL or config.mongoUrl);
+mongoose.connect(process.env.MONGOHQ_URL or config.mongoUrl);
 
 # passport settings
 passport.serializeUser (user,done) ->
