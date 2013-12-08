@@ -18,7 +18,7 @@ GoogleStrategy = require('passport-google').Strategy;
 
 
 # connect to mongo
-mongoose.connect(process.env.MONGOHQ_URL or config.mongoUrl);
+mongoose.connect(process.env.MONGOHQ_URL);
 
 # passport settings
 passport.serializeUser (user,done) ->
