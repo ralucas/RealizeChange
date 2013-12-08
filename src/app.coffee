@@ -8,7 +8,7 @@ app = express();
 global.app = app;
 mongoose = require('mongoose');
 config = require('./config');
-user = require('./Models/User');
+user = require('./models/user');
 passport = require('passport');
 
 FacebookStrategy = require('passport-facebook').Strategy;
