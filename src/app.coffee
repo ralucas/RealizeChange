@@ -92,12 +92,12 @@ app.locals.config = config;
 app.locals.links = require('./navigation');
 
 # auth routes
-# app.get '/auth/google', 
-# 	passport.authenticate('google', {scope:'email'}),
-# 	(req, res) ->
+app.get '/auth/google', 
+	passport.authenticate('google', {scope:'email'}),
+	(req, res) ->
 
-# app.get '/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) ->
-# 	res.redirect('/main');
+app.get '/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) ->
+	res.redirect('/main');
 
 # app.get('/auth/twitter', passport.authenticate('twitter'));
 
@@ -115,10 +115,10 @@ ensureAuthenticated = (req, res, next) ->
 
 # user routes
 app.get('/', routes.index);
-# app.get('/main', ensureAuthenticated, routes.main);
-# app.get '/logout', (req, res) ->
-# 	req.logOut();
-# 	res.redirect('/');
+app.get('/main', ensureAuthenticated, routes.main);
+app.get '/logout', (req, res) ->
+	req.logOut();
+	res.redirect('/');
 
 app.get '/error', (req,res) ->
 	res.send(401,'{err: you got an error. bud. buddy.}');
