@@ -21,7 +21,7 @@
 2. Integrate Twitter and FB Auth and Google auth
 3. Add Angular?
 
-Getting 340 error when pushing to heroku. When up the site is located here: http://nameless-plains-4198.herokuapp.com/
+Getting 340 error when pushing to heroku. When up the site is located here: realizechange.herokuapp.com || http://nameless-plains-4198.herokuapp.com/
 ![Full](/public/img/full.png)
 ![Compressed](/public/img/compressed.png)
 
