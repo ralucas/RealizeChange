@@ -1,8 +1,8 @@
 
 config = { 
 	google: {
-		returnURL: 'http://nameless-plains-4198.herokuapp.com//auth/google/callback',
-		realm: 'http://nameless-plains-4198.herokuapp.com/'
+		returnURL: 'http://localhost:1337/auth/google/callback'
+		realm: 'http://localhost:1337/'
 	},
 	twitter: {
 		
