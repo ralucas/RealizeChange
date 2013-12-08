@@ -7,7 +7,7 @@ path = require('path');
 app = express();
 global.app = app;
 mongoose = require('mongoose');
-config = require('./config');
+# config = require('./config');
 user = require('./Models/User');
 passport = require('passport');
 
