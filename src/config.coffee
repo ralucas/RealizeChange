@@ -7,7 +7,7 @@ config = {
 	twitter: {
 		
 	},
-	# mongoUrl: 'mongodb://localhost/realizeChange',
+	mongoUrl: 'mongodb://localhost/realizeChange',
 	title: 'RealizeChange.org',
 	subtitle: 'Making dreams come true...'
 
