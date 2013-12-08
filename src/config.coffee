@@ -8,8 +8,8 @@ config = {
 		
 	},
 	# mongoUrl: 'mongodb://localhost/realizeChange',
-	# title: 'RealizeChange.org',
-	# subtitle: 'Making dreams come true...'
+	title: 'RealizeChange.org',
+	subtitle: 'Making dreams come true...'
 
 }
 module.exports = config
