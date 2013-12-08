@@ -11,7 +11,9 @@ app = express();
 global.app = app;
 mongoose = require('mongoose');
 config = require('./config');
-user = require('./Models/User');
+user = require('./Models/User').user;
+globalAnswer = require('./Models/User').globalAnswerSchema;
+globalQuestion = require('./Models/User').globalQuestionSchema;
 passport = require('passport');
 
 FacebookStrategy = require('passport-facebook').Strategy;
@@ -126,6 +128,15 @@ app.get '/logout', (req, res) ->
 
 app.get '/error', (req,res) ->
 	res.send(401,'{err: please log in!}');
+
+# questions
+app.get '/sendquestion', (req, res) ->
+	newGlobalQuestion = new globalQuestion()
+	newGlobalQuestion.questions = req.body
+	newGlobalQuestion.save (err) ->
+					if(err) 
+						throw err;
+
 
 
 

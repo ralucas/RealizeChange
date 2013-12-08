@@ -12,6 +12,12 @@
     "passport": "~0.1.17",
     "passport-google": "~0.3.0",
     "passport-facebook": "~1.0.2",
-    "passport-twitter": "~1.0.2"
+    "passport-twitter": "~1.0.2",
+    "cake": "~0.1.1",
+    "coffee": "0.0.1"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
   }
 }

@@ -20,3 +20,5 @@ exports.partials = (req, res) ->
 
 	# console.log(name)
 	res.render("partials/#{req.params.name}", renderObj);
+
+
