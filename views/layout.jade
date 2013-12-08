@@ -10,8 +10,49 @@ html
 		link(href='css/main.css', rel='stylesheet', media='screen')
 		link(href='css/index.css', rel='stylesheet', media='screen')  
 		link(href='css/font-awesome.min.css', rel='stylesheet', media='screen')
+		
+	body
+		div.navbar.navbar-default.navbar-fixed-top
+			container 
+				div.navbar-header
+					a.navbar-brand(href='/') #{title}
+					button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+				div.navbar-collapse.collapse#navbar-main
+					ul.nav.navbar-nav
+						each link in links
+							- var isActive = (link.path == current ? 'active' : '')
+							li(class = '#{isActive}')
+								a(href='#{link.path}')= link.label
+					div.pull-right
+						ul.nav.navbar-nav.navbar-right
+							if username
+								li.dropdown
+									a.dropdown-toggle(href='#', data-toggle='dropdown')
+										| Hi #{username}!&nbsp;
+										b.caret
+									ul.dropdown-menu
+										li
+											a(href='/logout') Log Out
+
+										//- if user.role==='admin'
+										//- 	li
+										//- 		a(href='/admin') Admin Section
+							else
+								li.dropdown
+									a.dropdown-toggle(href='#', data-toggle='dropdown')
+										| Login
+										b.caret
+									ul.dropdown-menu
+										li
+											a(href='/auth/google') with Google
+					
+			div.container-fluid  
+				block content
+
+		block afterNav
 		script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
 		script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js")
 		script(src='js/lib/main.js')
-	body
-		block content

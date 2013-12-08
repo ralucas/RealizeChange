@@ -118,6 +118,7 @@ ensureAuthenticated = (req, res, next) ->
 
 # user routes
 app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
 app.get('/main', ensureAuthenticated, routes.main);
 app.get '/logout', (req, res) ->
 	req.logOut();
