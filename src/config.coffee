@@ -13,7 +13,7 @@ switch(process.env.NODE_ENV)
 			title: 'RealizeChange.org',
 			subtitle: 'Making dreams come true...'
 		}
-	else
+	when 'development'
 		config = { 
 			google: {
 				returnURL: 'http://localhost:1337/auth/google/callback',
