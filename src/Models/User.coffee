@@ -1,5 +1,5 @@
 mongoose = require('mongoose');
-# config = require('../config');
+config = require('../config');
 
 console.log(config);
 
