@@ -28,8 +28,8 @@ passport.serializeUser (user,done) ->
 passport.deserializeUser (id, done) ->
 	user.findOne {_id : id}, (err, user) ->
 		done(err,user);
-console.log("config", config.google.returnURL)
-passport.use(new GoogleStrategy({returnURL: process.env.GOOGLE_RETURN_URL or config.google.returnURL, realm: process.env.GOOGLE_REALM or config.google.realm}, (identifier, profile, done) ->
+
+passport.use(new GoogleStrategy({returnURL: config.google.returnURL, realm: config.google.realm}, (identifier, profile, done) ->
 	console.log("YEAH",profile.emails[0].value)
 	process.nextTick () ->
 		query = user.findOne({'email': profile.emails[0].value});
