@@ -118,14 +118,14 @@ ensureAuthenticated = (req, res, next) ->
 
 # user routes
 app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);
+app.get('/partials/:name', ensureAuthenticated, routes.partials);
 app.get('/main', ensureAuthenticated, routes.main);
 app.get '/logout', (req, res) ->
 	req.logOut();
 	res.redirect('/');
 
 app.get '/error', (req,res) ->
-	res.send(401,'{err: you got an error. bud. buddy.}');
+	res.send(401,'{err: please log in!}');
 
 
 
